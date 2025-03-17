@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Command Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Audiowide', cursive;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 200px;
+            background: linear-gradient(180deg, #00008B, #4B0082);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .sidebar ul li:hover {
+            background-color: #4B0082;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li data-tab="give">/give</li>
+            <li data-tab="summon">/summon</li>
+            <li data-tab="kill">/kill</li>
+            <li data-tab="effect">/effect</li>
+        </ul>
+    </div>
+    <div class="content">
+        <div id="give" class="tab-content">
+            <h2>/give Command</h2>
+            <div class="form-group">
+                <label for="give-entity">Entity</label>
+                <select id="give-entity">
+                    <!-- Options for entities -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="give-block">Block</label>
+                <select id="give-block">
+                    <!-- Options for blocks -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="give-item">Item</label>
+                <select id="give-item">
+                    <!-- Options for items -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="give-x">X Coordinate</label>
+                <input type="number" id="give-x" placeholder="X">
+            </div>
+            <div class="form-group">
+                <label for="give-y">Y Coordinate</label>
+                <input type="number" id="give-y" placeholder="Y">
+            </div>
+            <div class="form-group">
+                <label for="give-z">Z Coordinate</label>
+                <input type="number" id="give-z" placeholder="Z">
+            </div>
+            <div class="form-group">
+                <label for="give-nbt">NBT Data</label>
+                <input type="text" id="give-nbt" placeholder="NBT Data">
+            </div>
+        </div>
+        <div id="summon" class="tab-content">
+            <h2>/summon Command</h2>
+            <!-- Similar form structure as /give -->
+        </div>
+        <div id="kill" class="tab-content">
+            <h2>/kill Command</h2>
+            <!-- Similar form structure as /give -->
+        </div>
+        <div id="effect" class="tab-content">
+            <h2>/effect Command</h2>
+            <!-- Similar form structure as /give -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.sidebar ul li');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(item => item.classList.remove('active'));
+                    contents.forEach(content => content.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+                });
+            });
+
+            // Activate the first tab by default
+            tabs[0].classList.add('active');
+            contents[0].classList.add('active');
+        });
+    </script>
+</body>
+</html>
